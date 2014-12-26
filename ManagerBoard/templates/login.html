@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Campus Board</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="{{STATIC_URL}}ManagerBoard/js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}ManagerBoard/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}ManagerBoard/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}ManagerBoard/css/paititi.css">
+  </head>
+  <style type="text/css">
+      body{background-color: #F7F7F6;}
+      .login{padding-top: 10%; width: 320px;}
+      .center{float: none; margin-left: auto; margin-right: auto;}
+  </style>
+<body>
+<section>
+<div class="container login">
+    <div class="row ">
+        <div class="center well">
+            <legend>Faça seu login</legend>
+            <form method="GET" action="upload" accept-charset="UTF-8">
+            <fieldset>
+            <div class="form-group">
+              <input type="text" id="username" class="form-control" name="j_username" placeholder="e-mail" />
+            </div>
+            <div class="form-group">
+              <input type="password" id="password" class="form-control" name="j_password" placeholder="senha" />
+            </div>
+            <div class="form-group">
+            <!--label class="checkbox">
+                <input type="checkbox" name="remember" value="1" /> Recordar mi cuenta
+            </label-->
+            </div>
+            <div class="form-group">
+            <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
+            </div>
+            <!--div class="form-group" align="right">
+            	<span><b>o entrar con: </b></span>
+            	<a href="./login-facebook"><img alt="facebook" src="img/facebook.jpg" width="20px" height="20px"></a>
+            	<a href="./login-google"><img alt="google" src="img/google.jpg" width="30px" height="30px"></a>
+            </div-->
+            </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<p class="text-center muted ">Campus Board</p>
+</section>
+</body>
+</html>

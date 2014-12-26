@@ -1,0 +1,65 @@
+<script type="text/javascript" src="{{STATIC_URL}}CampusBoard/js/metro.min.js"></script>
+
+{% for row in rows %}
+<div class="row general">
+{% for tile in row.tiles %}
+	<div class="span5">
+		<div class="tile triple live {{ tile.type }}" style="display: none;" data-role="live-tile" data-effect="slideDown" data-period="10000">
+			{% for entry in tile.entries %}
+			<div class="tile-content" style="padding: 10px;">
+                <h5 class="fg-white"> #{{entry.id }} - {{ entry.title }}</h5>
+                <p class="fg-white info-content" align="justify">{{ entry.content }}</p>
+            </div>
+            {% endfor %}
+            <div class="tile-status">
+				<span class="name">14:44 - 24/11/2014</span>
+			</div>
+			<div class="brand">
+				<div class="badge newMessage"></div>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endfor %}
+
+<!--div class="row general">
+	<div class="span5">
+		<div class="tile triple bg-green" style="display: none;" data-role="live-tile" data-effect="slideDown" data-period="10000">
+			<div class="tile-content" style="padding: 10px;">
+                <h5 class="fg-white">Lorem Ipsum</h5>
+                <p class="fg-white" align="justify">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+			<div class="tile-content" style="padding: 10px;">
+                <h5 class="fg-white">Francisco Gomes Neto é o novo diretor do Imecc</h5>
+                <p class="fg-white" align="justify" style="font-size:12px;">
+                    Os professores Francisco de Assis Magalhães Gomes Neto e Carlile Campos Lavor tomaram posse na manhã desta quarta-feira (12) como diretor e diretor associado, respectivamente, do Instituto de Matemática, Estatística e Computação Científica (Imecc) da Unicamp, para o cumprimento de um mandato de quatro anos. Eles substituem a Caio José Colletti Negreiros e Verónica Andrea González-López. A solenidade de transmissão dos cargos, presidida pelo reitor José Tadeu Jorge, ocorreu no auditório do próprio Imecc, que ficou pequeno por causa do grande público presente, constituído por docentes, alunos, funcionários e convidados.
+                </p>
+            </div>
+			<div class="brand">
+				<div class="badge attention"></div>
+			</div>
+		</div>
+	</div>
+	<div class="span5">
+		<div class="tile triple bg-red" style="display: none;" data-role="live-tile" data-effect="slideDown" data-period="10000">
+			<div class="tile-content" style="padding: 10px;">
+                <h5 class="fg-white">Inclusão na Universidade é tema de fórum na UNICAMP</h5>
+                <p class="fg-white" align="justify" style="font-size:12px;">
+                    Discutir as políticas públicas de acesso à universidade, com foco nas cotas e ações afirmativas, é o objetivo do Fórum Inclusão e Diversidade, que será realizado na Unicamp no dia 13 de novembro, das 9 às 17h30. Organizado pelo Fórum Pensamento Estratégico (Penses) e professores do Instituto de Filosofia e Ciências Humanas (IFCH) e do Instituto de Estudos da Linguagem (IEL) da Unicamp, o evento vai reunir acadêmicos, movimentos sociais e autoridades governamentais para debater experiências e políticas de inclusão social implantadas nas instituições brasileiras, com especial atenção às demandas das universidades públicas paulistas. 
+                </p>
+            </div>
+            <div class="tile-content" style="padding: 10px;">
+                <h5 class="fg-white">Finibus Bonorum et Malorum</h5>
+                <p class="fg-white" align="justify">
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                </p>
+            </div>
+			<div class="brand">
+				<div class="badge available"></div>
+			</div>
+		</div>
+	</div>
+</div-->

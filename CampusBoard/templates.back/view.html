@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Campus Board</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript" src="{{STATIC_URL}}CampusBoard/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}CampusBoard/js/metro.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}CampusBoard/js/moment.min.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}CampusBoard/js/watch.js"></script>
+	<script type="text/javascript" src="{{STATIC_URL}}CampusBoard/js/weather.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}CampusBoard/css/metro-bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}CampusBoard/css/metro-bootstrap-responsive.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}CampusBoard/css/iconFont.min.css">
+	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}CampusBoard/css/watch.css">
+</head>
+<style type="text/css">
+	.metro .grid .row [class*="span"] {
+		float: left;
+		min-height: 1px;
+		margin-left: 0px;
+		padding: 3px;
+	}
+	.metro .grid .row {
+		display: block;
+		margin-top: 0px;
+	}
+	/*.metro .tile.quadro {
+		width: 450px;
+	}
+	.metro .span12, .metro .size12 {
+		width: 930px !important;
+	}*/
+	/*.metro .tile.triple {
+		width: 340px;
+	}*/
+	.metro .span4, .metro .size4 {
+		width: 320px !important;
+	}
+	.metro .span5, .metro .size5 {
+		width: 370px !important;
+	}
+	.metro .span9, .metro .size9 {
+		width: 740px !important;
+	}
+	.metro .information .row .span5 .tile {
+		height: 385px;
+		margin: 0px;
+	}
+	.metro .gadget .row .tile {
+		width: 100%;
+		height: 213px;
+		/*height: 256px;*/
+		margin: 0 10px 10px 0;
+	}
+	.metro .tile.triple {
+		width: 100%;
+	}
+
+	/*-------------------------
+		Tile color theme
+	--------------------------*/
+	#clock.tile .digits div span{
+		/*background-color:#272e38;
+		border-color:#272e38;*/
+		background-color:#FFF;
+		border-color:#FFF
+	}
+
+	#clock.tile .digits div.dots:before,
+	#clock.tile .digits div.dots:after{
+		/*background-color:#272e38;*/
+		background-color:#FFF;
+	}
+
+	#clock .date {
+		display: block;
+		font-size: 10pt;
+		margin: 5px 20px 2px 5px;
+		background: transparent;
+		color: #ffffff;
+	}
+	#clock .date span {
+		margin: 3px 3px;
+	}
+
+	/*#weatherholder {width:300px}
+	#weathertext{width: 100%; border: 1px solid #cccccc; display: none; color:#333 !important;}
+	#placetitle{font-size: 30px; text-transform: capitalize; color:#333 !important;}
+	#coord { font-size:10px;}
+	#temperature{font-family: arial; font-size: 24px; font-weight: bold; color:#F30 !important}
+	.contents{font-family: arial; color: #999999; font-size: 12px; line-height: 20px;}
+	#statustext{text-align: left;}
+	#forecastimage{width: 120px;}
+	#haritasi{ display:none}
+	.wiSeInBu { font-size:11px; border:1px solid #b3b3b3}*/
+	.metro .tile.weather .tile-content.icon img {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		margin-top: 0px;
+		margin-left: 0px;
+		left: 0px;
+		top: 0px;
+	}
+
+	.metro .information .tile {
+		font-size: 12px;
+		font-family: Arial,Helvetica,sans-serif;
+		font-weight: 400;
+		line-height: 18px;
+		margin-top: -5px;
+		word-wrap:break-word;
+		overflow: hidden;
+	}
+	.metro .information .tile h5 {
+		margin-bottom: 20px;
+		margin-top: 0;
+		line-height: 18zpx;
+	}
+	.metro p {
+		font-size: 12px;
+		font-family: Arial,Helvetica,sans-serif;
+		font-weight: 400;
+		line-height: 18px;
+		margin: 0px;
+		word-wrap:break-word;
+		letter-spacing: 0;
+	}
+	.metro .listview-outlook .list .list-content .list-title {
+		font-family: "Proxima Nova","helvetica neue",helvetica,arial,sans-serif;
+		position: relative;
+		top: -1px;
+		color: #006dac;
+		line-height: 24px;
+		font-weight: bold;
+		font-size: 14px;
+		direction: ltr;
+	}
+	.metro .listview-outlook .list .list-content .list-subtitle {
+		font-weight: bold;
+		color: #000;
+		line-height: normal;
+		overflow: auto;
+		white-space: normal;
+		text-align: justify;
+	}
+	.metro .listview-outlook .list .list-content .list-remark {
+		line-height: normal;
+		color: #898989;
+		font-size: 10px;
+		font-weight: 400;
+		text-align: right;
+	}
+</style>
+<body class="metro" style="background-color: #333;">
+	<div class="grid show-grid">
+		<div class="row">
+			<div class="span3 gadget" style="padding:0;">
+				<div class="row">
+                    <div class="span3">
+					<div id="clock" class="tile bg-lightBlue" style="height:119px; margin:0;">
+						<div class="tile-content icon">
+							<!--i class="icon-clock"></i-->
+							<div class="display">
+								<div class="weekdays"></div>
+								<div class="ampm"></div>
+								<div class="alarm"></div>
+								<div class="digits"></div>
+							</div>
+						</div>
+						<div class="tile-status">
+							<div class="date"></div>
+						</div>
+						<div class="brand">
+							<div class="badge"><i class="icon-clock"></i></div>
+						</div>
+					</div>
+                    </div>
+					<!--div id="clock" class="light">
+						<div class="display">
+							<div class="weekdays"></div>
+							<div class="ampm"></div>
+							<div class="alarm"></div>
+							<div class="digits"></div>
+						</div>
+					</div-->
+				</div>
+				<div class="row">
+					<div class="span3">
+					<div class="tile bg-yellow" style="margin:0;">
+						<div class="tile-content icon">
+							<i class="icon-bus"></i>
+						</div>
+						<div class="tile-status">
+							<span class="name">Circular</span>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span3">
+					<div class="tile weather bg-darkMagenta" style="margin:0;">
+						<div class="tile-content icon">
+							<div style="display: table;">
+								<div style="vertical-align:top; display:table-cell; height:100%; width:40%;">
+									<img src="" id="weatherimage" style="width:80px; height:80px;"/>
+								</div>
+								<div style="vertical-align:top; display:table-cell; height:100%; width:60%; color:white;">
+									<span id="placetitle" style="font-size:26px; width:100%; display: inline-block !important; margin-top:5px;"></span><br/>
+									<span id="temperature" style="font-size:26px; width:100%;"></span>
+								</div>
+							</div>
+						</div>
+						<div class="tile-status">
+							<span class="name">Clima</span>
+						</div>
+					</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span3">
+					<div class="tile bg-lightOrange" style="margin:0;">
+						<div class="tile-content icon">
+							<!--i class="icon-coffee"></i-->
+							<img src="{{STATIC_URL}}CampusBoard/images/restaurant-32.png">
+						</div>
+						<div class="tile-status">
+							<span class="name">Restaurante</span>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			<div class="span9 information" style="padding:0;">
+				<div class="row">
+					<div class="span5">
+						<div class="tile triple bg-lightBlue">
+							<div class="tile-content" style="padding: 10px;">
+                                <h5 class="fg-white">CGU e entidades organizam reunião para discutir segurança e vivência na Unicamp</h5>
+                                <p class="fg-white" align="justify">
+                                    Dando sequência ao acordado entre a Reitoria e o DCE, a Coordenadoria Geral da Universidade (CGU), em conjunto com as entidades representativas – DCE, STU e ADUNICAMP – organizam reunião aberta à participação da comunidade com o objetivo discutir questões e formular propostas relacionadas à segurança e à vivência nos campis da Unicamp.<br><br>
+                                    Dia 17. Das 11 às 14h<br>
+									No Centro de Convenções da Unicamp
+                                </p>
+                            </div>
+							<div class="brand">
+								<div class="badge newMessage"></div>
+							</div>
+						</div>
+					</div>
+					<div class="span5">
+						<div class="tile triple bg-amber">
+							<div class="tile-content" style="padding: 10px;">
+                                <h5 class="fg-white">Pesquisa na área de deficiência de anticorpos ganha prêmio internacional</h5>
+                                <p class="fg-white" align="justify" style="font-size:12px;">
+                                    A pesquisa "Expressão do gene da tirosina quinase de Bruton e de sensores do estresse do retículo endoplasmático na agamaglobulinemia ligada ao X" recebeu o prêmio de melhor pôster apresentado durante o 16º Encontro Bienal da Sociedade Europeia para Imunodeficiências, ocorrido em Praga, Repúbica Tcheca, no final de outubro e início de novembro. A pesquisa concorreu com outros trabalhos 1.027 inscritos e ficou entre as dez premiadas. A apresentação foi feita pela professora do Departamento de Pediatria da Faculdade de Ciências Médicas (FCM) da Unicamp Maria Marluce Vilela, orientadora da tese de doutorado defendida em fevereiro de 2014 pela bióloga Vanessa Domingues Ramalho.
+                                </p>
+                            </div>
+							<div class="brand">
+								<div class="badge alert"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span5">
+						<div class="tile triple bg-green">
+							<div class="tile-content" style="padding: 10px;">
+                                <h5 class="fg-white">Francisco Gomes Neto é o novo diretor do Imecc</h5>
+                                <p class="fg-white" align="justify" style="font-size:12px;">
+                                    Os professores Francisco de Assis Magalhães Gomes Neto e Carlile Campos Lavor tomaram posse na manhã desta quarta-feira (12) como diretor e diretor associado, respectivamente, do Instituto de Matemática, Estatística e Computação Científica (Imecc) da Unicamp, para o cumprimento de um mandato de quatro anos. Eles substituem a Caio José Colletti Negreiros e Verónica Andrea González-López. A solenidade de transmissão dos cargos, presidida pelo reitor José Tadeu Jorge, ocorreu no auditório do próprio Imecc, que ficou pequeno por causa do grande público presente, constituído por docentes, alunos, funcionários e convidados.
+                                </p>
+                            </div>
+							<div class="brand">
+								<div class="badge attention"></div>
+							</div>
+						</div>
+					</div>
+					<div class="span5">
+						<div class="tile triple bg-red">
+							<div class="tile-content" style="padding: 10px;">
+                                <h5 class="fg-white">Inclusão na Universidade é tema de fórum na UNICAMP</h5>
+                                <p class="fg-white" align="justify" style="font-size:12px;">
+                                    Discutir as políticas públicas de acesso à universidade, com foco nas cotas e ações afirmativas, é o objetivo do Fórum Inclusão e Diversidade, que será realizado na Unicamp no dia 13 de novembro, das 9 às 17h30. Organizado pelo Fórum Pensamento Estratégico (Penses) e professores do Instituto de Filosofia e Ciências Humanas (IFCH) e do Instituto de Estudos da Linguagem (IEL) da Unicamp, o evento vai reunir acadêmicos, movimentos sociais e autoridades governamentais para debater experiências e políticas de inclusão social implantadas nas instituições brasileiras, com especial atenção às demandas das universidades públicas paulistas. 
+                                </p>
+                            </div>
+							<div class="brand">
+								<div class="badge available"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="span4 forum" style="padding:0;">
+				<div class="row">
+				<div class="span4">
+					<div class="listview-outlook" style="background-color:#cde6f7; height:776px;" data-role="listview">
+						<a class="list active" href="#">
+							<div class="list-content">
+								<span class="list-title">Thiago:</span>
+								<span class="list-subtitle">OFEREÇO CARONA<br>
+								Data: 09/11<br>
+								Horário: 12:30<br>
+								Partindo: São Paulo - Metro Santos Imigrantes<br>
+								Chegando: Campinas - Barão Geraldo<br>
+								Preço: R$15,00</span>
+								<span class="list-remark">send 12:30 - 12/11/2014</span>
+							</div>
+						</a>
+						<a class="list active" href="#">
+							<div class="list-content">
+								<span class="list-title">Joao:</span>
+								<span class="list-subtitle">Congreso em Computação Grafica</span>
+								<span class="list-remark">send 12:30 - 12/11/2014</span>
+							</div>
+						</a>
+						<a class="list active" href="#">
+							<div class="list-content">
+								<span class="list-title">Ariadne:</span>
+								<span class="list-subtitle">Palestra Uma Biografia não autorizada da família X86<br>
+								Sexta-feira, 14/11/2014, às 14:00 horas</span>
+								<span class="list-remark">send 12:30 - 12/11/2014</span>
+							</div>
+						</a>
+						<a class="list active" href="#">
+							<div class="list-content">
+								<span class="list-title">Cristiane:</span>
+								<span class="list-subtitle">Disciplinas 1s2015<br>
+								Já está em nosso site a lista com as<br>
+								disciplinas que serão oferecidas no<br>
+								primeiro semestre de 2015.<br>
+								http://www.ic.unicamp.br/pos/disciplinas</span>
+								<span class="list-remark">send 12:30 - 12/11/2014</span>
+							</div>
+						</a>
+						<a class="list active" href="#">
+							<div class="list-content">
+								<span class="list-title">Arderson:</span>
+								<span class="list-subtitle">Estagio em Amsterdang</span>
+								<span class="list-remark">send 12:30 - 12/11/2014</span>
+							</div>
+						</a>
+					</div>
+				</div>
+				</div>
+				<!--div class="listview">
+				    <a href="#" class="list">
+				        <div class="list-content">
+				            <span class="icon icon-music fg-olive"></span>
+				            <div class="data">
+				                <span class="list-title">Excel 2013</span>
+				                <div class="rating small no-margin" data-role="rating"
+				                        data-stars="5"></div>
+				                <span class="list-remark">Price: $1</span>
+				            </div>
+				        </div>
+				    </a>
+				    <a href="#" class="list">
+				        <div class="list-content">
+				            <span class="icon icon-location fg-red"></span>
+				            <div class="data">
+				                <span class="list-title">OFEREÇO CARONA</span>
+				                <span class="list-subtitle">
+								Data: 09/11<br>
+								Horário: 12:30<br>
+								Partindo: São Paulo - Metro Santos Imigrantes<br>
+								Chegando: Campinas - Barão Geraldo<br>
+								Preço: R$15,00
+				                </span>
+				                <span class="list-remark">São Paulo -> Campinas</span>
+				            </div>
+				        </div>
+				    </a>
+				    <a href="#" class="list">
+				        <div class="list-content">
+				            <span class="icon icon-thumbs-up fg-lightBlue"></span>
+				            <div class="data">
+				                <span class="list-title">Word 2013</span>
+				                <div class="progress-bar small" data-role="progress-bar"
+				                        data-value="75"></div>
+				                <span class="list-remark">Download...75%</span>
+				            </div>
+				        </div>
+				    </a>
+				</div-->
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	$('.ampm').hide();
+</script>
+</body>
+</html>

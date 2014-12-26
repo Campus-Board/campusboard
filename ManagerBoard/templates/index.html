@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Campus Board - Administrador</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="{{STATIC_URL}}ManagerBoard/css/ie/html5shiv.js"></script><![endif]-->
+		<script src="{{STATIC_URL}}ManagerBoard/js/jquery.min.js"></script>
+		<script src="{{STATIC_URL}}ManagerBoard/js/jquery.poptrox.min.js"></script>
+		<script src="{{STATIC_URL}}ManagerBoard/js/skel.min.js"></script>
+		<script src="{{STATIC_URL}}ManagerBoard/js/init.js"></script>
+
+			<link rel="stylesheet" href="{{STATIC_URL}}ManagerBoard/css/skel.css" />
+			<link rel="stylesheet" href="{{STATIC_URL}}ManagerBoard/css/style.css" />
+			<link rel="stylesheet" href="{{STATIC_URL}}ManagerBoard/css/style-xlarge.css" />
+            <link rel="stylesheet" href="{{STATIC_URL}}ManagerBoard/css/style-large.css" />
+
+		<!--[if lte IE 8]><link rel="stylesheet" href="{{STATIC_URL}}ManagerBoard/css/ie/v8.css" /><![endif]-->
+	</head>
+	<body id="top">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="#" class="image avatar"><img src="{{STATIC_URL}}ManagerBoard/images/avatar.jpg" alt="" /></a>
+				<h1>Bem-vindo ao administrador do <strong>Campus Board</strong>,<br />
+				uma simples interface para você.</h1>
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+				<!-- Three -->
+					<section id="three">
+						<h1>Campus Board</h1>
+						<!--p>A continuacion ingrese la informacion que desea que sea mostrada en los multiples displays dentro de la UNICAMP.</p-->
+                        <p>Em seguida, digite as informações que você deseja ser exibido em múltiplas telas dentro da UNICAMP.</p>
+						<div class="row">
+							<div class="12u$">
+								<form action="{% url "upload" %}" method="post" enctype="multipart/form-data">
+									<div class="row uniform 50%">
+                                        <div class="12u$">
+                                            <select name="type">
+                                                <option value="important" selected>Notícias</option>
+                                                <option value="event">Eventos</option>
+                                                <option value="information">Palestras</option>
+                                                <option value="other">Outros</option>
+                                            </select>
+                                            <input name="date" type="datetime" />
+                                            <input name="dateEnd" type="datetime" />
+                                            <!--input id="type" type="hidden" name="type" value="important" /-->
+                                        </div>
+										<div class="12u$"><input type="text" name="title" id="title" placeholder="Título" /></div>
+										<div class="12u$"><textarea name="message" id="message" placeholder="Mensagem" rows="6"></textarea></div>
+									</div>
+                                {% csrf_token %}
+                                <p>{{ form.non_field_errors }}</p>
+
+                                <p>
+                                    {{ form.docfile.errors }}
+                                    {{ form.docfile }}
+                                </p>
+                                <ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+								</form>
+
+							</div>
+						</div>
+					</section>
+			</div>
+			
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<!--li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li-->
+					<!--li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li-->
+					<li><a href="/" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<!--li>&copy; Untitled</li-->
+					<li><strong>Campus Board</strong></li>
+				</ul>
+			</footer>
+
+	</body>
+</html>

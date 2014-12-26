@@ -1,0 +1,23 @@
+<script type="text/javascript" src="{{STATIC_URL}}CampusBoard/js/metro.min.js"></script>
+{% for row in rows %}
+<div class="row personal">
+{% for tile in row.tiles %}
+	<div class="span5">
+		<div class="tile triple live {{ tile.type }}" style="display: none;" data-role="live-tile" data-effect="slideDown" data-period="10000">
+			{% for entry in tile.entries %}
+			<div class="tile-content" style="padding: 10px;">
+                <h5 class="fg-white"> #{{entry.id }} - {{ entry.title }}</h5>
+                <p class="fg-white info-content" align="justify">{{ entry.content }}</p>
+            </div>
+            {% endfor %}
+            <div class="tile-status">
+				<span class="name">14:44 - 24/11/2014</span>
+			</div>
+			<div class="brand">
+				<div class="badge newMessage"></div>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endfor %}

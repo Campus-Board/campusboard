@@ -1,0 +1,105 @@
+/* start - thumbnail */
+.thumbnail-list {
+  display: table;
+  height: auto;
+  max-width: 100%;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  /*border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;*/
+}
+
+.thumbnail-list .imagen img, .thumbnail .imagen img {
+	display: block;
+	margin: 10px auto;
+	padding: 5px;
+}
+
+.thumbnail-list .imagen img {
+	border: 1px solid #dddddd;
+	border-radius: 4px;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.thumbnail-list .imagen img:hover, .thumbnail .imagen img:hover {
+	box-shadow: 5px 5px 15px #888888;
+}
+
+.thumbnail-list .imagen {
+	width: 33.3333%;
+	display: inline-block;
+	float: left;
+	position: relative;
+	padding: 15px;
+}
+
+.thumbnail-list .caption {
+	width: 66.6666%;
+	display: inline-block;
+	float: left;
+	position: relative;
+	padding: 15px;
+}
+/* end - thumbnail */
+
+/* start - search bar */
+.search-bar #label-search {
+    text-align: right;
+    font-size: 18px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.search-bar #input-search .search-text {
+    height: 40px; 
+    vertical-align: middle;
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.search-bar #button-search {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+/* end - search bar */
+
+@media (max-height: 700px) {
+	.container-body {
+		min-height: 460px;
+	}
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+	height: 60px;
+}
+#footer {
+	background-color: #f5f5f5;
+	/*position: fixed;*/
+	bottom: 0px;
+	right: 0px;
+	left: 0px;
+	z-index: 1030;
+	margin-bottom: 0px;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+	#footer {
+	  margin-left: -20px;
+	  margin-right: -20px;
+	  padding-left: 20px;
+	  padding-right: 20px;
+	}
+}
+.credit {
+	margin: 20px 0;
+}
