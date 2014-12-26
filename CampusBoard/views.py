@@ -18,13 +18,23 @@ logger = logging.getLogger(__name__)
 
 from Personalization import text_analysis
 from Personalization import constants
-from  Data.models import Message
+from Data.models import Message
+from Data.models import User
 import pickle
 def main(request):
     return render_to_response('main.html', dict(), RequestContext(request))
 
 def personal(request):
-    profile = str(request.GET.get('id'))
+    bluetooth_id = str(request.GET.get('id'))
+    users = User.objects.filter(bluetooth_id=bluetooth_id)
+    assert len(users) <= 1
+    profile = None
+    if len(users) == 0:
+        profile = constants.default_profile()
+    else:
+        profile = users.get_profile()
+
+    logger.debug("PROFILE LEN: " + str(len(profile)))
     documents = Document.objects.all().order_by('-date')
 
     k = min( len(documents), 30)

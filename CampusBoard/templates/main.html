@@ -538,7 +538,9 @@
 			    var bluetoothTable = datastore.getTable('bluetooth');
 				//console.log(bluetoothTable);
 			    bResult = bluetoothTable.query({id: 'aJSd8aNs2'});
-			    if(!bResult){
+			    //console.log(bResult);
+			    if(!bResult || bResult.length == 0){
+			        //console.log('creo');
 			    	var device = bluetoothTable.insert({
 				    	id: 'aJSd8aNs2',
 				    	mac: x,

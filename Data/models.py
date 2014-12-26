@@ -8,7 +8,7 @@ class Message(models.Model):
 
 class User(models.Model):
     phone_number = models.CharField(max_length=30)
-    bluetooth_id = models.CharField(max_length=30)
+    bluetooth_id = models.CharField(max_length=30, unique=True)
     alias = models.CharField(max_length=30)
     profile = models.CharField(max_length=1000, default='None')
     def get_profile(self):
