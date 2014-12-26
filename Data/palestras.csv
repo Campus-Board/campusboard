@@ -1,0 +1,265 @@
+#28/11/11#$# TIME HYBRID TOTAL ORDER BROADCAST:
+                 EXPLOITING THE INHERENT SYNCHRONY OF 
+                    ASYNCHRONOUS BROADCAST NETWORKS          #$#Total order broadcast is a fundamental communication primitive for the
+      construction  of highly-available  systems. Informally,  the primitive
+      guarantees that messages sent by a group of processes are delivered to
+      all processes in  the same order.  This paper  investigates the design
+      and performance of a simple  synchronous total order broadcast that is
+      built atop of an asynchronous  distributed system based on a broadcast
+      network.  Our Time Hybrid Total  Order Broadcast (THyTOB) explores the
+      inherent synchrony of the broadcast network to build a total order for
+      the  messages,  while ensuring  safety  under  asynchrony and  in  the
+      presence of process failures.  We  assess the performance of THyTOB in
+      an Ethernet-based commodity cluster, and show that it is on a par with
+      the  performance of  other well-known,  and more  complex total  order
+broadcast protocols inherently designed for the asynchronous model.#
+#25/11/14#$#ASPECTS FOR DESIGN-SPACE EXPLORATION IN RECONFIGURABLE ARCHITECTURES#$#      Dr. Diniz received his M.Sc. in Electrical and Computer Engineering
+      from the Technical University in Lisbon, Portugal and his Ph.D. from 
+      the University of California, Santa Barbara in Computer Science
+      in 1997. Since 1997 he has been a researcher with the University of 
+      Southern California's Information Sciences Institute (USC/ISI) and 
+      an Assistant Professor of Computer Science at the University of Southern
+      California in Los Angeles, California.  He was the technical lead of 
+      DARPA-funded and DoE-funded research projects, in particular in the
+      DEFACTO project. The DEFACTO project combined the strengths of 
+      traditional compilation approaches with commercially available EDA 
+      synthesis tools and lead to the development of a prototype compiler 
+      for the automatically mapping of image processing algorithms written 
+      in programming languages such as C to 
+      Field-Programmable-Gate-Array-based computing architectures. 
+      More recently, he was also the principal Investigator of the EU-funded 
+      REFLECT research project addressing issues of programmability of 
+      reconfigurable architectures. In particular, along with its co-PIs, he 
+      pioneered the introduction of aspect-oriented-programming concepts, with 
+      the development of the LARA domain-specific language, in the context of the 
+      high-level program transformations and design-space exploration for 
+      reconfigurable FPGA-based architectures. The REFLECT project has shown   
+      that LARA can be successfully used to explore a wide range of possible 
+      hardware/software designs with minimal programmer involvement thus 
+      leading to both program and programmer portability across different 
+      target architectures and generation of devices. He has authored or 
+      co-authored many internationally recognized scientific journal papers 
+      and over 75 international conference papers. He is heavily involved in 
+      the scientific community having participated as part of the technical
+      program committee of over 20 international conferences in the area of 
+      high-performance computing, reconfigurable and field-programmable 
+computing.#
+#21/11/14#$#DESIGN DA INTERAÇÃO GUIADO PELA PRAGMÁTICA #$#  Um dos objetivos na área de Interação Humano-Computador é investigar como criar sistemas que fazem sentido e que são relevantes
+      para os usuários. Nesta palestra investigaremos como as noções
+      de ""interação"", ""computador"", ""sistema"" e ""usuário"" mudaram no
+      decorrer do tempo e como isso se refletiu no uso de métodos e
+      técnicas para o design da interação. Apresentaremos a Pragmática
+      como um framework de interação que pode ser empregado para
+      enfrentar desafios contemporâneos no design de sistemas
+significativos e relevantes.#
+#14/11/14#$#UMA BIOGRAFIA NÃO AUTORIZADA
+                                  DA FAMÍLIA X86#$# A família x86 é uma das famílias de arquiteturas de conjuntos de
+      instruções de processadores de maior sucesso na história da
+      computação. Nesta palestra, faremos um tour pela história dos
+      computadores com ênfase especial no surgimento e 
+desenvolvimento da família de arquiteturas x86.#
+#07/11/14#$#APLICANDO A ESTRUTURA DE DADOS GEMA A MAPAS ARBITRÁRIOS    #$#      Uma superfície arbitrária pode ser aproximada no computador por uma
+      coleção de triângulos colados pelos seus lados.  Um objeto sólido pode ser
+      aproximado por uma coleção de tetraedros colados pelas suas faces.  Estes
+      são exemplos de /triangulações/, de dimensão 2 e 3, respectivamente.
+      Triangulações são usadas em muitas aplicações, como computação gráfica,
+      física, engenharia, geologia e geografia, etc..
+
+      Numa triangulação de dimensão d, há d! maneiras distintas de colar uma
+      determinada faceta de um elemento (lado de trângulo, face de tetraedro,
+      etc.) a determinada faceta de outro elemento.  Estruturas de dados que
+      representam triangulações precisam incluir essa informação, usando
+      log_2(d!) bits para cada face; caso contrário, ao percorrer a estrutura é
+      é necessário efetuar esse número de testes a cada passo, para identificar
+      a face correta.
+
+      A estrutura gema exige que os vértices de cada elemento sejam
+      ""coloridos"" com d+1 cores distintas, e que todas as colagens
+      identifiquem sempre vértices de mesma cor.  A vantagem dessa
+      estrutura é que ela dispensa os bits e testes de orientação.
+      A desvantagem é que só pode ser usada se a triangulação admite
+      uma coloração os vértices, o que nem sempre é o caso.
+
+      Para tornar essa estrutura interessante na prática, é portanto
+      necessário desenvolver algoritmos eficientes para subdividir
+      uma triangulação arbitrária de modo a torná-la colorível.
+      Nesta palestra apresentaremos algoritmos recentemente desenvolvidos
+      para esse fim.
+
+Este trabalho é parte do projeto da tese de Doutorado de Lucas M. Bueno.#
+#31/10/14#$#PRÁTICAS DE PUBLICAÇÃO EM CIÊNCIA DA COMPUTAÇÃO MUNDIAL#$#Esta palestra abordará algumas características da prática de
+      publicação da Ciência da Computação mundial. Abordarei questões
+      como as diferenças em citações entre conferências e revistas,
+      as  diferenças em produtividade entre algumas subáreas da
+      computação, a continuação de linhas de pesquisa uma vez que
+      os primeiros resultados são publicados, etc. Esta palestra reflete 5
+      anos de pesquisa minha, junto com colegas, sobre a bibliometria
+da computação mundial.#
+#23/10/14#$#UX PARA SOFTWARE#$#Um olhar sobre UX com foco para o profissional de
+      desenvolvimento de software: 
+      - entendendo um pouco sobre UX Design e suas vertentes, 
+      - perfil dos profissionais, 
+      - overview de modelos de gestão e, 
+      - como encaixar cada fase no ciclo de desenvolvimento 
+de software.#
+#16/10/14#$#INOVAÇÃO PRA QUEM?#$#Quando um produto ou serviço é inovador ele causa impacto na vida das
+      pessoas e transforma para sempre a forma dessas pessoas viverem
+      e trabalharem” (Tim Brown). 
+      No livro, Design Thinking, o autor trata inovação como valor
+      percebido, como algo de fato tem utilidade e surpreende.
+      Utilidade pressupõe uso de algo por alguém. Surpreender
+      significa ir além. Ir além da solução de uso para um único
+problema percebido.#
+#17/10/14#$#FROM ONE TO MANY: THE FASCINATING BRAVE NEW WORLD OF MULTIMEDIA PHYLOGENY#$#Currently, multimedia objects can be easily created, stored,
+      (re)-transmitted, and edited for good or bad. In this sense,
+      there has been an increasing interest in finding the structure
+      of temporal evolution within a set of documents and how
+      documents are related to one another overtime. This process,
+      also known in the literature as Multimedia Phylogeny, aims at
+      finding the phylogeny tree(s) that best explains the creation
+      process of a set of near-duplicate documents (e.g.,
+      images/videos) and their ancestry relationships. Solutions to
+      this problem have direct applications in forensics, security,
+      copyright enforcement, news tracking services and other
+      areas. In this presentation, we explore solutions for
+      reconstructing the evolutionary tree(s) associated with a set of
+      visual documents, more specifically images and videos. This can
+      be useful for aiding experts to track the source of child
+      pornography image broadcasting or the chain of image and video
+distribution in time, for instance.#
+#10/10/14#$#UM RAIO-X DOS PROGRAMAS BRASILEIROS DE
+         PÓS-GRADUAÇÃO EM CIÊNCIA DA COMPUTAÇÃO#$#  A avaliação da produtividade em pesquisa é cada vez mais
+      relevante para a alocação de fundos. Por um lado, esta avaliação
+      é desafiadora por envolver uma análise quantitativa e
+      qualitativa de diversas características, a maioria delas de
+      natureza subjetiva. Por outro lado, atualmente existe uma grande
+      quantidade de dados bibliométricos disponíveis. Esta palestra
+      apresenta os resultados de um estudo que objetivou caracterizar
+      os Programas Brasileiros de Pós-Graduação em Ciência da
+      Computação e as relações entre eles considerando diferentes
+perspectivas.#
+#03/10/14$$#$CAMINHOS CRUZADOS: ALAN TURING E JOHN VON NEUMANN#$#      Alan Turing e John von Neumann foram dois gigantes cujos nomes
+      estão intimamente ligados ao surgimento da Computação moderna.  
+      Nesta palestra serão apresentados as contribuições dos dois, no 
+      contexto histórico da área. Serão explorados também alguns paralelos 
+e cruzamentos das suas trajetórias.#
+#26/09/14#$#USO DE ALGORITMOS EVOLUTIVOS PARA A AUTOMAÇÃO DOS TESTES DE SOFTWARE#$#Os testes estão entre as atividades mais populares para a
+      garantia da qualidade de software. No entanto, a geração de
+      conjuntos de testes que não sejam muito grandes mas que sejam
+      eficazes na descoberta de erros requer muito esforço e
+      experiência. O uso de testes baseados em modelos tem a vantagem
+      de permitir a construção automática de conjuntos de teste. Esses
+      conjuntos    são criados a partir de modelos que representam o
+      comportamento do sistema, e portanto, essa criação pode se dar
+      antes mesmo da existência do código. Nossas pesquisas utilizam
+      modelos de estado estendidos, que modelam tanto o fluxo de
+      controle quanto o de dados. O problema de encontrar caminhos no
+      modelo, assim como os dados que exercitem esses caminhos, pode
+      ser mapeado para um problema de busca. Neste sentido, utilizamos
+      algoritmos de otimização para encontrar a(s) melhor(es)
+      solução(ões) dentre as inúmeras soluções possíveis. Mais
+      especificamente, utilizamos os algoritmos evolutivos, que se
+      baseiam em mecanismos de evolução existentes na natureza. Serão
+      apresentadas as pesquisas realizadas pelo grupo de testes do
+      IC-Unicamp utilizando algoritmos evolutivos na geração e seleção
+      de casos de teste. Por fim, problemas em aberto para trabalhos
+futuros serão discutidos.#
+#10/09/14#$#BEYOND NASH EQUILIBRIUM: SOLUTION CONCEPTS FOR THE 21ST CENTURY#$#Nash equilibrium is the most commonly-used notion of equilibrium in game theory.  However, it suffers from numerous problems.  Some are well known
+      in the game theory community; for example, the Nash equilibrium
+      of repeated prisoner's dilemma is neither normatively nor
+      descriptively reasonable.
+      However, new problems arise when considering Nash equilibrium from a
+      computer science perspective: for example, Nash equilibrium is not robust
+      (it does not tolerate ""faulty"" or ""unexpected"" behavior), it does not
+      deal with coalitions, it does not take computation cost into account, and
+      it does not deal with cases where players are not aware of all aspects of
+      the game.  In this talk, I discuss solution concepts that try to address
+      these shortcomings of Nash equilibrium.  This talk represents joint work
+      with various collaborators, including Ittai Abraham, Danny Dolev, Rica
+      Gonen, Rafael Pass, and Leandro Rego.  No background in game theory
+will be presumed.#
+#03/09/14#$#QUANTITATIVE SECURITY ANALYSIS USING THE ADVISE FORMALISM#$#When designing computer systems, identifying the best solutions
+       to address security issues is a challenging task. Designers
+       should be able to predict how different factors affect the
+       security of the system, including component failures, and which 
+       solutions offer the best tradeoff. This kind of information is
+       valuable both in the design phase, to compare the security
+       offered by a number of possible architecture alternatives, both during 
+       the use of the system, e.g., to determine if and where it is profitable
+       to add new security measures. Quantitative security analyses help the 
+       designers not only to identify the best solution, but to reason about 
+       costs. While quantitative model-based evaluation has been
+       widely applied for reliability, availability, and performance problems, 
+       model-based quantification of security properties is still a challenge. 
+       In this talk I will describe how security analysis if performed using 
+       the ADVISE formalism, which allows an analyst to describe the different 
+       paths that an attacker may follow, and different kind of attackers. 
+       After introducing the main concepts of the formalism, I will describe
+       some examples, and the application to the concrete case study of the 
+CASHMA biometric authentication system.#
+#02/09/14#$#COMPUTATIONAL BEHAVIOUR ANALYSIS: OBJECTIVE ASSESSMENT FOR EFFECTIVE ASSISTANCE#$#Computational Behaviour Analysis (CBA) is an emerging scientific
+      discipline that focuses on the development of novel computational
+      tools for the analysis of behavioural phenotypes as they are relevant
+      and indicative for a number of health challenges. Examples of which are
+      cognitive declines such as Dementia, Parkinson's Disease, or Autism, to
+      name but a a few. CBA draws from sensor data processing and machine 
+      learning techniques for capturing and analysing behaviour data
+      aiming for quantitative assessments of behavioural phenomena,
+      which goes beyond traditional activity recognition applications. In this 
+      talk I will give an overview of CBA through exploring exemplary
+      application domains from our group's work incl. discussing
+      technical advancements that facilitate CBA in real-world settings.#
+#20/08/14#$#PERCEPTUAL ANNOTATION: MEASURING HUMAN VISION
+                         TO IMPROVE COMPUTER VISION#$#For many problems in computer vision, human learners are considerably
+      better than machines. Humans possess highly accurate internal
+      recognition and learning  mechanisms that are not yet
+      understood, and they frequently have access to more extensive
+      training data through a lifetime of unbiased experience with the
+      visual world. In this talk, I will propose the use of visual 
+      psychophysics to directly leverage the abilities of human
+      subjects to build better machine learning systems. First, I will
+      describe an advanced online psychometric testing platform to
+      make new kinds of annotation data available for
+      learning. Second, I will develop a technique for harnessing
+      these new kinds of information ? ?perceptual annotations? ? for
+      support vector machines.
+      A key intuition for this approach is that while it may remain
+      infeasible to dramatically increase the amount of data and
+      high-quality labels available for the training of a given
+      system, measuring the exemplar-by-exemplar difficulty and pattern of
+      errors of human annotators can provide important information for 
+      regularizing the solution of the system at hand. A case study
+      for the problem of face detection demonstrates that this approach
+      yields state-of-the-art results on the challenging FDDB data set.
+      With such a general approach, a broad spectrum of problem domains can
+      benefit from  annotations reflecting human patterns of
+      error. Ongoing work in this direction is looking at applications
+      specific to health and education. One such application in the
+      area of health is connectomics, a subfield of neuroscience
+      concerned with reconstructing the wiring diagram of the
+      brain. This talk will describe new annotation collection procedures
+      specifically related to eye tracking as humans segment images of brain
+      slices from an electron microscope. Turning to education, online
+      courses have emerged as a new and  effective pedagogical tool. By
+      deploying  psychophysics during online instruction, actions,
+      facial expressions, micro-movements, interaction with input
+      devices, and performance on assessments can be measured. This
+      represents a rich new source of information for data scientists 
+      using machine learning to identify students who are
+effectively learning new material or those who are struggling.#
+#08/08/14#$#THE EXACT GEOMETRIC COMPUTATION PARADIGM AND CGAL#$#
+      Geometric algorithms are often very  prone to even small errors in the
+      arithmetic.   This is due  to their  special nature  as the  result is
+      usually also  a topological object.  For instance, whether  two curves
+      intersect,  touch or  not  intersect  implies that  the  result of  an
+      intersection operation  would be comprised  of two, one or  no vertex.
+      It is  therefore often mandatory to provide  exact implementations for
+      geometric  algorithms  in  order  to achieve  robustness.   CGAL,  the
+      Computational   Geometry  Algorithms   Library,   follows  the   exact
+      geometric-computation (EGC)  paradigm.  A naive  attempt could realize
+      this  by carrying  out each  and every  arithmetic operation  using an
+      expensive unlimited-precision number  type. However, only the discrete
+      decisions   in  an   algorithm,   namely  the   predicates,  must   be
+      correct. This  is a significant  relaxation from the naive  concept of
+      numerical exactness.  The  talk will motivate the EGC  and discuss its
+implementation in CGAL.#

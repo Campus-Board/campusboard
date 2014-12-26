@@ -3,12 +3,8 @@ __author__ = 'mac'
 from os.path import join
 import csv
 
-
-
-#DATA_PATH = "/Users/mac/Dropbox/unicamp/TSI/trabajo-final/data"
-DATA_PATH = "/Users/jzelar/Documents/UNICAMP/Topicos en Sistemas de Informacion/trabajo/data"
-#PERSONALIZATION_PATH = "/Users/mac/Projects/TSI/Personalization/Personalization/"
-PERSONALIZATION_PATH = "/Users/jzelar/Documents/UNICAMP/Topicos en Sistemas de Informacion/trabajo/Personalization/Personalization/"
+DATA_PATH = "./Data"
+PERSONALIZATION_PATH = "./Personalization/"
 
 NEWS_IC = "noticias-ic-06-today.csv"
 NEWS = "noticias-unicamp.csv"
