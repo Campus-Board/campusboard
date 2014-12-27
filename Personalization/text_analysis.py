@@ -298,6 +298,12 @@ def update_profile_by_data(profile, analyzer, data, delta = 0.1):
         profile[i] = profile[i] * 0.9 + labels[i] * 0.1
     return profile
 
+def update_profile_by_data(profile_array, data, delta = 0.1):
+    model = TextAnalyzer()
+    model.read_model()
+    assert len(profile_array) == TAXONOMY_LEN
+    return update_profile_by_data(profile_array, model, data, delta)
+
 def get_personalized_content(model, profile_array, how_much_documents):
     assert len(profile_array) == TAXONOMY_LEN
     documents = all_content()

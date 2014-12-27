@@ -14,6 +14,11 @@ from ManagerBoard.models import Document
 import traceback
 import pickle
 from Personalization import constants
+from Personalization import text_analysis
+
+import logging
+logger = logging.getLogger(__name__)
+
 
 class EchoLayer(YowInterfaceLayer):
 
@@ -70,10 +75,16 @@ class EchoLayer(YowInterfaceLayer):
         smtpserver.ehlo
         smtpserver.login(gmail_user, gmail_pwd)
         header = 'To:' + to + '\n' + 'From: mail@campusboard.com' + gmail_user + '\n' + 'Subject: Conteudo solicitado por ' + from_ + '\n'
-        print header
         msg = header + '\n ' + message + ' \n\n'
         smtpserver.sendmail(gmail_user, to, msg)
         smtpserver.close()
+        users = User.objects.filter(phone_number = from_)
+        assert len(users) <= 1
+        if len(users == 0):
+            logger.debug("Unregistered user: %s"%(from_))
+        else:
+            users[0].profile = text_analysis.update_profile_by_data(users[0].profile, message, 0.2)
+            users[0].save()
 
     def onTextMessage(self,messageProtocolEntity):
         receipt = OutgoingReceiptProtocolEntity(messageProtocolEntity.getId(), messageProtocolEntity.getFrom())
@@ -81,21 +92,27 @@ class EchoLayer(YowInterfaceLayer):
             messageProtocolEntity.getBody(),
             to = messageProtocolEntity.getFrom())
 
-        print("Echoing %s to %s" % (messageProtocolEntity.getBody(), messageProtocolEntity.getFrom(False)))
+        print("Message received: %s to %s" % (messageProtocolEntity.getBody(), messageProtocolEntity.getFrom(False)))
         body = messageProtocolEntity.getBody()
         if len(body) > 0 and body[0] == '#':
             self.parse_command(messageProtocolEntity.getFrom(), body)
         else:
-            msg = Message.objects.create(author = messageProtocolEntity.getFrom(), content = messageProtocolEntity.getBody(), creation = datetime.now())
+            phone = messageProtocolEntity.getFrom()
+            message_body = messageProtocolEntity.getBody()
+            msg = Message.objects.create(author = phone, content = message_body, creation = datetime.now())
+            users = User.objects.filter(phone_number = phone)
+            assert len(users) <= 1
+            if len(users) == 0:
+                logger.debug('not registered user')
+                outgoingMessageProtocolEntity = TextMessageProtocolEntity( "Voce nao esta cadastrado, envie um mensagem com: #cadastrar bluetooth_id nome", to = messageProtocolEntity.getFrom())
+                self.toLower(outgoingMessageProtocolEntity)
+                self.toLower(receipt)
+            else:
+                user = users[0]
+                user.profile = text_analysis.update_profile_by_data(user.profile, message_body, 0.2)
+                user.save()
+                self.toLower(receipt)
 
-        """print ("Message up to date")
-        for m in  Message.objects.all():
-            print m
-        print ("##################")"""
-
-        #send receipt otherwise we keep receiving the same message over and over
-        self.toLower(receipt)
-        #self.toLower(outgoingMessageProtocolEntity)
     def onMediaMessage(self, messageProtocolEntity):
         if messageProtocolEntity.getMediaType() == "image":
             receipt = OutgoingReceiptProtocolEntity(messageProtocolEntity.getId(), messageProtocolEntity.getFrom())
