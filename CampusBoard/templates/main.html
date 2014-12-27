@@ -47,16 +47,16 @@
 		width: 740px !important;
 	}
 	.metro .information .row.general .span5 .tile {
-		height: 385px;
+		height: 380px;
 		margin: 0px;
 	}
 	.metro .information .row.personal .span5 .tile {
-		height: 254.588px;
+		height: 251.255px;
 		margin: 0px;
 	}
 	.metro .gadget .row .tile {
 		width: 100%;
-		height: 213px;
+		height: 210px;
 		/*height: 256px;*/
 		margin: 0 10px 10px 0;
 	}
@@ -64,10 +64,16 @@
 		width: 100%;
 	}
 
-	.info-content {
+	.row.general .info-content {
 		word-break: break-word;
 		overflow: scroll;
-		height: 164px;
+		height: 284px;
+	}
+
+	.row.personal .info-content {
+		word-break: break-word;
+		overflow: scroll;
+		height: 140px;
 	}
 
 	/*-------------------------
@@ -165,12 +171,12 @@
 	}
 </style>
 <body class="metro" style="background-color: #333;">
-	<div class="grid show-grid">
+	<div class="grid show-grid" style="height:771.766px;">
 		<div class="row">
 			<div class="span3 gadget" style="padding:0;">
 				<div class="row">
                     <div class="span3">
-					<div id="clock" class="tile bg-lightBlue" style="height:119px; margin:0;">
+					<div id="clock" class="tile bg-lightBlue" style="height:118px; margin:0;">
 						<div class="tile-content icon">
 							<!--i class="icon-clock"></i-->
 							<div class="display">
@@ -246,128 +252,17 @@
 				</div>
 				<div class="row">
 				<div class="span4">
-					<div class="listview-outlook" style="background-color:#cde6f7; height:736px; overflow: scroll;" data-role="listview">
-						<!--a class="list active" href="#">
-							<div class="list-content">
-								<span class="list-title">Thiago:</span>
-								<span class="list-subtitle">OFEREÇO CARONA<br>
-								Data: 09/11<br>
-								Horário: 12:30<br>
-								Partindo: São Paulo - Metro Santos Imigrantes<br>
-								Chegando: Campinas - Barão Geraldo<br>
-								Preço: R$15,00</span>
-								<span class="list-remark">send 12:30 - 12/11/2014</span>
-							</div>
-						</a>
-						<a class="list active" href="#">
-							<div class="list-content">
-								<span class="list-title">Joao:</span>
-								<span class="list-subtitle">Congreso em Computação Grafica</span>
-								<span class="list-remark">send 12:30 - 12/11/2014</span>
-							</div>
-						</a>
-						<a class="list active" href="#">
-							<div class="list-content">
-								<span class="list-title">Ariadne:</span>
-								<span class="list-subtitle">Palestra Uma Biografia não autorizada da família X86<br>
-								Sexta-feira, 14/11/2014, às 14:00 horas</span>
-								<span class="list-remark">send 12:30 - 12/11/2014</span>
-							</div>
-						</a>
-						<a class="list active" href="#">
-							<div class="list-content">
-								<span class="list-title">Cristiane:</span>
-								<span class="list-subtitle">Disciplinas 1s2015<br>
-								Já está em nosso site a lista com as<br>
-								disciplinas que serão oferecidas no<br>
-								primeiro semestre de 2015.<br>
-								http://www.ic.unicamp.br/pos/disciplinas</span>
-								<span class="list-remark">send 12:30 - 12/11/2014</span>
-							</div>
-						</a>
-						<a class="list active" href="#">
-							<div class="list-content">
-								<span class="list-title">Arderson:</span>
-								<span class="list-subtitle">Estagio em Amsterdang</span>
-								<span class="list-remark">send 12:30 - 12/11/2014</span>
-							</div>
-						</a>
-						<a class="list active" href="#">
-							<div class="list-content">
-								<span class="list-title">Joao:</span>
-								<span class="list-subtitle">Congreso em Computação Grafica</span>
-								<span class="list-remark">send 12:30 - 12/11/2014</span>
-							</div>
-						</a>
-						<a class="list active" href="#">
-							<div class="list-content">
-								<span class="list-title">Ariadne:</span>
-								<span class="list-subtitle">Palestra Uma Biografia não autorizada da família X86<br>
-								Sexta-feira, 14/11/2014, às 14:00 horas</span>
-								<span class="list-remark">send 12:30 - 12/11/2014</span>
-							</div>
-						</a>
-						<a class="list active" href="#">
-							<div class="list-content">
-								<span class="list-title">Thiago:</span>
-								<span class="list-subtitle">OFEREÇO CARONA<br>
-								Data: 09/11<br>
-								Horário: 12:30<br>
-								Partindo: São Paulo - Metro Santos Imigrantes<br>
-								Chegando: Campinas - Barão Geraldo<br>
-								Preço: R$15,00</span>
-								<span class="list-remark">send 12:30 - 12/11/2014</span>
-							</div>
-						</a-->
+					<div class="listview-outlook" style="background-color:#cde6f7; height:726px; overflow: scroll;" data-role="listview">
+						
 					</div>
 				</div>
 				</div>
-				<!--div class="listview">
-				    <a href="#" class="list">
-				        <div class="list-content">
-				            <span class="icon icon-music fg-olive"></span>
-				            <div class="data">
-				                <span class="list-title">Excel 2013</span>
-				                <div class="rating small no-margin" data-role="rating"
-				                        data-stars="5"></div>
-				                <span class="list-remark">Price: $1</span>
-				            </div>
-				        </div>
-				    </a>
-				    <a href="#" class="list">
-				        <div class="list-content">
-				            <span class="icon icon-location fg-red"></span>
-				            <div class="data">
-				                <span class="list-title">OFEREÇO CARONA</span>
-				                <span class="list-subtitle">
-								Data: 09/11<br>
-								Horário: 12:30<br>
-								Partindo: São Paulo - Metro Santos Imigrantes<br>
-								Chegando: Campinas - Barão Geraldo<br>
-								Preço: R$15,00
-				                </span>
-				                <span class="list-remark">São Paulo -> Campinas</span>
-				            </div>
-				        </div>
-				    </a>
-				    <a href="#" class="list">
-				        <div class="list-content">
-				            <span class="icon icon-thumbs-up fg-lightBlue"></span>
-				            <div class="data">
-				                <span class="list-title">Word 2013</span>
-				                <div class="progress-bar small" data-role="progress-bar"
-				                        data-value="75"></div>
-				                <span class="list-remark">Download...75%</span>
-				            </div>
-				        </div>
-				    </a>
-				</div-->
 			</div>
 		</div>
 	</div>
-	<div class="grid show-grid">
-		<div id="footer" class="span12" style="height: 20px; padding: 3px; color: #FFF"><span class="square15 inline-block bg-yellow on-left"></span> Importante <span class="square15 inline-block bg-red on-left"></span> Informacion <span class="square15 inline-block bg-blue on-left"></span> Eventos <span class="square15 inline-block bg-green on-left"></span> Outros &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		Envia um whatsapp com o numero de noticioa + seu correio eletrônico, para recever mais informação</div>
+	<div class="grid show-grid" style="height:40px;">
+		<div id="footer" class="span12" style="height: 40px; padding: 3px; color: #FFF"><span class="square15 inline-block bg-yellow on-left"></span>&nbsp;<span>Importante</span>&nbsp;<span class="square15 inline-block bg-red on-left"></span>&nbsp;<span>Informacion</span>&nbsp;<span class="square15 inline-block bg-blue on-left"></span>&nbsp;<span>Eventos</span>&nbsp;<span class="square15 inline-block bg-green on-left"></span>&nbsp;<span>Outros</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;<span>Envia um whatsapp com o numero de noticioa + seu correio eletrônico, para recever mais informação</span></div>
 	</div>
 <script type="text/javascript">
 	var globalKey = 'g'
@@ -514,7 +409,7 @@
 	}
 
 	function test(x) {
-		var client = new Dropbox.Client({key: '9k0i96krs4cjoou'});
+		var client = new Dropbox.Client({key: 'ek6r03dt5wsbxsl'});
 
 		/*if (x) {
 		    reload('p')
@@ -558,7 +453,7 @@
 		}
 	}
 
-	var client = new Dropbox.Client({key: '9k0i96krs4cjoou'});
+	var client = new Dropbox.Client({key: 'ek6r03dt5wsbxsl'});
 
 	// Try to finish OAuth authorization.
 	client.authenticate({interactive:false}, function (error) {
