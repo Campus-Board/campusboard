@@ -119,5 +119,9 @@ LOGGING = {
             'handlers': ['file'],
             'level': 'DEBUG',
         },
+        'Interaction': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
     }
 }
