@@ -6,6 +6,9 @@ class Message(models.Model):
     content = models.CharField(max_length=256)
     creation = models.DateTimeField(auto_now_add=True, blank=True)
 
+    def __str__(self):
+        return self.content
+
 class User(models.Model):
     phone_number = models.CharField(max_length=256, unique=True)
     bluetooth_id = models.CharField(max_length=256, unique=True)

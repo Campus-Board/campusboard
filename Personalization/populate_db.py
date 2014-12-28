@@ -5,8 +5,9 @@ import csv
 
 import Personalization.text_analysis
 from ManagerBoard.models import Document
-DATA_PATH = "/Users/mac/Dropbox/unicamp/TSI/trabajo-final/data"
-PERSONALIZATION_PATH = "/Users/mac/Projects/TSI/Personalization/Personalization/"
+
+DATA_PATH = "./Data"
+PERSONALIZATION_PATH = "./Personalization/"
 
 NEWS_IC = "noticias-ic-06-today.csv"
 NEWS = "noticias-unicamp.csv"
