@@ -112,13 +112,43 @@ def general(request):
 from Data.models import User
 
 def forum(request):
+    messages = Message.objects.all().order_by('-creation')
+    logger.debug("messages: "+str(len(messages)))
+    if len(messages) > 0:
+        message = messages[0]
+
+        whatsappMsgs = WhatsappMsg.objects.all().order_by('-creation')
+        logger.debug("whatsappMsgs: "+str(len(whatsappMsgs)))
+        if len(whatsappMsgs) > 0:
+            whatsapp = whatsappMsgs[0]
+            logger.debug(message)
+            logger.debug(whatsapp)
+            if message.author != whatsapp.author and message.content != whatsapp.content:
+                logger.debug("different")
+                newWhatsapp = WhatsappMsg(author = message.author, content = message.content)
+                newWhatsapp.save()
+                return render_to_response('message.html', dict(message = newWhatsapp), RequestContext(request))
+            else:
+                logger.debug("same")
+
+        else:
+            logger.debug("empty")
+            newWhatsapp = WhatsappMsg(author = message.author, content = message.content)
+            newWhatsapp.save()
+            return render_to_response('message.html', dict(message = newWhatsapp), RequestContext(request))
+
+    return render_to_response('empty.html', dict(), RequestContext(request))
+
+    """
     whatsappMsgs = WhatsappMsg.objects.all().order_by('-creation')
-    logger.debug(whatsappMsgs)
+    #logger.debug(whatsappMsgs)
     if len(whatsappMsgs) <= 0:
         whatsappMsgs = loadMessages()
     whatsapp = whatsappMsgs[0]
     whatsapp.delete()
-    return render_to_response('message.html', dict(message = whatsapp), RequestContext(request))
+
+    return render_to_response('message.html', dict(message = m), RequestContext(request))
+    """
 
 def loadMessages():
     whatsappMsg = []
