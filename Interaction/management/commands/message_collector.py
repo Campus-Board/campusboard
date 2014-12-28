@@ -10,4 +10,3 @@ class Command(BaseCommand):
         credentials = (login, pw)
         stack = YowsupEchoStack(credentials)
         stack.start()
-        self.stdout.write('There are {} things!'.format(MyModel.objects.count()))

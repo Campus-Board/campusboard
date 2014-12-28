@@ -45,8 +45,19 @@ class EchoLayer(YowInterfaceLayer):
                 if len(tokens) >= 3:
                     inbase = User.objects.filter(phone_number=requestor_phone)
                     print "found %d users!" % len(inbase)
+                    print len(requestor_phone)
+                    print len(tokens[1])
+                    print len(tokens[2])
+                    print len(pickle.dumps(constants.default_profile()))
                     if len(inbase) == 0:
-                        User.objects.create(phone_number = requestor_phone, bluetooth_id = tokens[1], alias = tokens[2], profile = pickle.dumps(constants.default_profile()))
+                        user = User()
+                        user.phone_number = requestor_phone
+                        user.bluetooth_id = tokens[1]
+                        user.alias = tokens[2]
+                        print "LEN profile"
+                        user.set_profile(constants.default_profile())
+                        print len(user.get_profile())
+                        user.save()
                     else:
                         user = inbase[0]
                         user.bluetooth_id = tokens[1]
@@ -63,7 +74,7 @@ class EchoLayer(YowInterfaceLayer):
                         msg = docs[0].title.upper() + '\n' + docs[0].message + '\n'
                         self.send_email(tokens[2], requestor_phone, msg)
         except Exception, err:
-            print 'parsing commands error'
+            print 'parsing command error'
             print Exception, err
 
     def send_email(self, to, from_, message):
@@ -83,7 +94,7 @@ class EchoLayer(YowInterfaceLayer):
         if len(users == 0):
             logger.debug("Unregistered user: %s"%(from_))
         else:
-            users[0].profile = text_analysis.update_profile_by_data(users[0].profile, message, 0.2)
+            users[0].set_profile(text_analysis.update_profile_by_data(users[0].get_profile(), message, 0.2))
             users[0].save()
 
     def onTextMessage(self,messageProtocolEntity):
@@ -92,26 +103,25 @@ class EchoLayer(YowInterfaceLayer):
             messageProtocolEntity.getBody(),
             to = messageProtocolEntity.getFrom())
 
-        print("Message received: %s to %s" % (messageProtocolEntity.getBody(), messageProtocolEntity.getFrom(False)))
+        print("Message received: %s from %s" % (messageProtocolEntity.getBody(), messageProtocolEntity.getFrom(False)))
         body = messageProtocolEntity.getBody()
         if len(body) > 0 and body[0] == '#':
             self.parse_command(messageProtocolEntity.getFrom(), body)
         else:
+            print "non-command"
             phone = messageProtocolEntity.getFrom()
             message_body = messageProtocolEntity.getBody()
-            msg = Message.objects.create(author = phone, content = message_body, creation = datetime.now())
+            Message.objects.create(author = phone, content = message_body, creation = datetime.now())
+
             users = User.objects.filter(phone_number = phone)
             assert len(users) <= 1
-            if len(users) == 0:
-                logger.debug('not registered user')
-                outgoingMessageProtocolEntity = TextMessageProtocolEntity( "Voce nao esta cadastrado, envie um mensagem com: #cadastrar bluetooth_id nome", to = messageProtocolEntity.getFrom())
-                self.toLower(outgoingMessageProtocolEntity)
-                self.toLower(receipt)
-            else:
+            if len(users) == 1:
                 user = users[0]
-                user.profile = text_analysis.update_profile_by_data(user.profile, message_body, 0.2)
+                print "Registered user: " + user.alias
+                user.set_profile(text_analysis.update_profile_by_data(user.get_profile(), message_body, 0.2))
                 user.save()
-                self.toLower(receipt)
+                print "User saved"
+        self.toLower(receipt)
 
     def onMediaMessage(self, messageProtocolEntity):
         if messageProtocolEntity.getMediaType() == "image":

@@ -298,11 +298,19 @@ def update_profile_by_data(profile, analyzer, data, delta = 0.1):
         profile[i] = profile[i] * 0.9 + labels[i] * 0.1
     return profile
 
-def update_profile_by_data(profile_array, data, delta = 0.1):
-    model = TextAnalyzer()
-    model.read_model()
-    assert len(profile_array) == TAXONOMY_LEN
-    return update_profile_by_data(profile_array, model, data, delta)
+def update_profile_by_data(profile, data, delta = 0.1):
+    analyzer = TextAnalyzer()
+    analyzer.read_model()
+    assert len(profile) == TAXONOMY_LEN
+    labels = analyzer.predict(data)
+    max_ = max(labels)
+    min_ = min(labels)
+    for i in range(len(labels)):
+        labels[i] = (labels[i]-min_)/(max_-min_)
+    assert len(labels) == len(profile)
+    for i in range(len(profile)):
+        profile[i] = profile[i] * (1-delta) + labels[i] * delta
+    return profile
 
 def get_personalized_content(model, profile_array, how_much_documents):
     assert len(profile_array) == TAXONOMY_LEN
