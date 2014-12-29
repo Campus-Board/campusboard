@@ -298,7 +298,7 @@ def update_profile_by_data(profile, analyzer, data, delta = 0.1):
         profile[i] = profile[i] * 0.9 + labels[i] * 0.1
     return profile
 
-def update_profile_by_data(profile, data, delta = 0.1):
+def update_profile_by_data(profile, data, delta = 0.3):
     analyzer = TextAnalyzer()
     analyzer.read_model()
     assert len(profile) == TAXONOMY_LEN

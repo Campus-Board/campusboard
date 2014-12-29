@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from yowsup.layers.interface                           import YowInterfaceLayer, ProtocolEntityCallback
 from yowsup.layers.protocol_messages.protocolentities  import TextMessageProtocolEntity
 from yowsup.layers.protocol_media.protocolentities  import ImageDownloadableMediaMessageProtocolEntity
@@ -45,10 +46,6 @@ class EchoLayer(YowInterfaceLayer):
                 if len(tokens) >= 3:
                     inbase = User.objects.filter(phone_number=requestor_phone)
                     print "found %d users!" % len(inbase)
-                    print len(requestor_phone)
-                    print len(tokens[1])
-                    print len(tokens[2])
-                    print len(pickle.dumps(constants.default_profile()))
                     if len(inbase) == 0:
                         user = User()
                         user.phone_number = requestor_phone
@@ -58,6 +55,8 @@ class EchoLayer(YowInterfaceLayer):
                         user.set_profile(constants.default_profile())
                         print len(user.get_profile())
                         user.save()
+                        outgoingMessageProtocolEntity = TextMessageProtocolEntity( "Voce foi cadastrado com successo", to = requestor_phone)
+                        self.toLower(outgoingMessageProtocolEntity)
                     else:
                         user = inbase[0]
                         user.bluetooth_id = tokens[1]
@@ -67,12 +66,14 @@ class EchoLayer(YowInterfaceLayer):
                 if len(tokens) >= 3:
                     doc_id = tokens[1].lower()
                     real_id = (ord(doc_id[0]) - ord('0'))*10 + (ord(doc_id[1]) - ord('0'))
+                    print "REAL ID: " + str(real_id)
                     docs = Document.objects.filter(id=real_id)
+                    print len(docs)
                     if len(docs) != 1:
                         print "[WARNING] Docs retrieved %d" % (len(docs))
                     else:
                         msg = docs[0].title.upper() + '\n' + docs[0].message + '\n'
-                        self.send_email(tokens[2], requestor_phone, msg)
+                        self.send_email(tokens[2], requestor_phone, msg.encode('utf-8'))
         except Exception, err:
             print 'parsing command error'
             print Exception, err
@@ -91,10 +92,10 @@ class EchoLayer(YowInterfaceLayer):
         smtpserver.close()
         users = User.objects.filter(phone_number = from_)
         assert len(users) <= 1
-        if len(users == 0):
+        if len(users) == 0:
             logger.debug("Unregistered user: %s"%(from_))
         else:
-            users[0].set_profile(text_analysis.update_profile_by_data(users[0].get_profile(), message, 0.2))
+            users[0].set_profile(text_analysis.update_profile_by_data(users[0].get_profile(), message, 0.8))
             users[0].save()
 
     def onTextMessage(self,messageProtocolEntity):
@@ -118,7 +119,7 @@ class EchoLayer(YowInterfaceLayer):
             if len(users) == 1:
                 user = users[0]
                 print "Registered user: " + user.alias
-                user.set_profile(text_analysis.update_profile_by_data(user.get_profile(), message_body, 0.2))
+                user.set_profile(text_analysis.update_profile_by_data(user.get_profile(), message_body, 0.8))
                 user.save()
                 print "User saved"
         self.toLower(receipt)

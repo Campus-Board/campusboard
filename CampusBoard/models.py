@@ -5,7 +5,7 @@ import datetime
 class WhatsappMsg(models.Model):
     author = models.CharField(max_length=100, default='')
     content = models.TextField(default='')
-    creation = models.DateTimeField(auto_now_add=True, blank=True)
+    creation = models.DateTimeField(blank=True)
 
     def __str__(self):
         return self.content

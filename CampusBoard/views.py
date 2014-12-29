@@ -32,13 +32,19 @@ def personal(request):
     if len(users) == 0:
         profile = constants.default_profile()
     else:
-        profile = users.get_profile()
+        profile = users[0].get_profile()
 
     logger.debug("PROFILE LEN: " + str(len(profile)))
     documents = Document.objects.all().order_by('-date')
 
-    k = min( len(documents), 30)
+    k = min( len(documents), 12)
+    logger.debug("begin get personalized")
     documents = text_analysis.get_personalized_content(profile, 20, documents)
+    logger.debug("None? %s" % str(documents == None))
+    logger.debug("K " + str(len(documents)))
+    for doc in documents:
+        logger.debug("Doc: " + doc.title)
+    logger.debug("end get personalized")
 
     docsList = split_list(documents, wanted_parts=6)
     logger.debug("doclist " + str(len(docsList)))
@@ -116,16 +122,22 @@ def forum(request):
     logger.debug("messages: "+str(len(messages)))
     if len(messages) > 0:
         message = messages[0]
-
+        pos = message.author.find('@')
+        if pos != -1:
+            phone = message.author[0:pos]
         whatsappMsgs = WhatsappMsg.objects.all().order_by('-creation')
         logger.debug("whatsappMsgs: "+str(len(whatsappMsgs)))
         if len(whatsappMsgs) > 0:
             whatsapp = whatsappMsgs[0]
-            logger.debug(message)
-            logger.debug(whatsapp)
-            if message.author != whatsapp.author and message.content != whatsapp.content:
+            logger.debug(str(message.creation))
+            logger.debug(str(whatsapp.creation))
+            if message.creation != whatsapp.creation:
                 logger.debug("different")
-                newWhatsapp = WhatsappMsg(author = message.author, content = message.content)
+                users = User.objects.filter(phone_number=message.author)
+                if len(users) == 0:
+                    newWhatsapp = WhatsappMsg(author = phone, content = message.content, creation = message.creation)
+                else:
+                    newWhatsapp = WhatsappMsg(author = users[0].alias, content = message.content, creation = message.creation)
                 newWhatsapp.save()
                 return render_to_response('message.html', dict(message = newWhatsapp), RequestContext(request))
             else:
@@ -133,7 +145,11 @@ def forum(request):
 
         else:
             logger.debug("empty")
-            newWhatsapp = WhatsappMsg(author = message.author, content = message.content)
+            users = User.objects.filter(phone_number=message.author)
+            if len(users) == 0:
+                newWhatsapp = WhatsappMsg(author = phone, content = message.content, creation = message.creation)
+            else:
+                newWhatsapp = WhatsappMsg(author = users[0].alias, content = message.content, creation = message.creation)
             newWhatsapp.save()
             return render_to_response('message.html', dict(message = newWhatsapp), RequestContext(request))
 
